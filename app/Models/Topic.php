@@ -18,4 +18,9 @@ class Topic extends Model
     {
         return $this->hasMany(Quiz::class);
     }
+
+    public function outlines(): HasMany
+    {
+        return $this->hasMany(Outline::class);
+    }
 }

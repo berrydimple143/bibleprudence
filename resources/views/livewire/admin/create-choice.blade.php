@@ -14,7 +14,7 @@
                 name="option">
         </div>        
         <div class="flex items-center gap-2 grow">
-            <label for="quiz_id" class="font-bold text-lg">Question:</label>
+            <label for="quiz_id" class="font-bold text-lg">Quiz Question:</label>
             <select class="border border-green-400 p-3 outline-none grow" name="quiz_id" id="quiz_id"
                 wire:model='quiz_id'>
                 <option value="">Select a question here</option>

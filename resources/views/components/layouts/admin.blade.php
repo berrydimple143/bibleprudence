@@ -48,6 +48,7 @@
     @include('components.parts.admin.sidebar')
     <div class="w-full flex flex-col h-screen overflow-y-hidden">
         @include('components.parts.admin.header')
+        <x-check-record></x-check-record>
         <div class="w-full overflow-x-hidden border-t flex flex-col">
             {{ $slot }}
         </div>

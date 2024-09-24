@@ -3,7 +3,7 @@
         tp = $event.target.offsetTop;
         setTimeout(() => {
             body = null;
-        }, 2500);
+        }, 3000);
     " class="absolute z-10 p-3 ml-80 text-lg text-black shadow-xl rounded-lg bg-green-200 border-2 border-gray-800"      
     x-bind:style="'top: ' + tp + 'px'" 
     >

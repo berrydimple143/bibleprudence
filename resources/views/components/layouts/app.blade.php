@@ -21,6 +21,7 @@
         <x-email></x-email>
         <x-correct></x-correct>
         <x-wrong></x-wrong>
+        <x-result></x-result>
         <x-success></x-success>
         {{ $slot }}
         @include('components.parts.footer')

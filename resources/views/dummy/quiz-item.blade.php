@@ -1,8 +1,14 @@
 <div class="flex flex-col p-2 border-2 border-dashed border-gray-400 mb-2 space-y-2">
-    <div class="flex text-black space-x-2">        
+    <div class="flex text-black space-x-2">
+        <div class="font-bold">
+            {{ $counter }}.
+        </div> 
         <div class="font-bold">
             {{ $quiz->question }}
-        </div>        
+        </div>
+        {{-- <div>
+            ({{ $quiz->verse }})
+        </div> --}}
         <div class="cursor-pointer" title="Comment here for this item only" wire:click="$toggle('commenting')">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000"
                 fill="none">
@@ -16,7 +22,7 @@
     </div>
     <div class="flex-wrap space-x-6 sm:flex">
         @foreach ($quiz->selections as $choice)
-        <livewire:front.choice-item :choice="$choice" :items="$items" :verse="$quiz->verse" :question="$quiz->question" :answer="$quiz->answer"
+        <livewire:front.choice-item :choice="$choice" :score="$score" :question="$quiz->question" :answer="$quiz->answer"
             wire:key="{{ $choice->id }}">
         </livewire:front.choice-item>
         @endforeach

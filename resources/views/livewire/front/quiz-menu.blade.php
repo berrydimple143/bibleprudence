@@ -21,6 +21,14 @@
                 <option value="Hard">Hard</option>
             </select>
         </div>
+        <div class="bg-green-300 p-2 border border-green-500">
+            <label for="">Items:</label>
+            <select class="bg-green-300" wire:model="items" wire:change="changeItems">
+                @for($i=10; $i<=300; $i+=10)
+                    <option value="{{ $i }}">{{ $i }}</option>
+                @endfor                
+            </select>
+        </div>
         <div wire:click="generatePdf" @click="$refs.download.play()" wire:loading.class="opacity-50" wire:loading.attr="disabled"   
             class="flex items-center space-x-1 text-white bg-green-500 p-2 border border-green-800 border-dashed cursor-pointer hover:bg-teal-800">
             <svg xmlns="http://www.w3.org/2000/svg" class="text-white" viewBox="0 0 24 24" width="24" height="24"

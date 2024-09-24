@@ -11,11 +11,9 @@ use Livewire\Component;
 class QuizMenu extends Component
 {
     public string $topic = '';
-
     public string $level = '';
-
+    public int $items = 50;
     public int $score = 0;
-
     public $search = null;
 
     public function mount($score)
@@ -31,6 +29,11 @@ class QuizMenu extends Component
     public function changeLevel()
     {
         $this->dispatch('change-level', level: $this->level);
+    }
+
+    public function changeItems()
+    {
+        $this->dispatch('change-items', items: $this->items);
     }
 
     public function searchItem()

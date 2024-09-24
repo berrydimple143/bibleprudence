@@ -17,13 +17,10 @@ class Site extends Component
     ];
 
     public $search = null;
-
+    public int $items = 50;
     public int $counter = 1;
-
     public int $score = 0;
-
     public $topic = null;
-
     public $level = null;
 
     #[On('change-score')]
@@ -44,6 +41,13 @@ class Site extends Component
         $this->level = $level;
     }
 
+    #[On('change-items')]
+    public function changeItems($items)
+    {
+        session()->put('total_quiz', (int)$items);
+        $this->items = (int)$items;
+    }
+
     #[On('search')]
     public function searchQuiz($search)
     {
@@ -55,6 +59,8 @@ class Site extends Component
         ini_set('max_execution_time', 36000);
         session()->put('score', 0);
         session()->put('questions', []);
+        session()->put('taken', 0);
+        session()->put('total_quiz', 50);
     }
 
     public function render()
@@ -68,8 +74,8 @@ class Site extends Component
                 $query->where('question', 'LIKE', '%'.$this->search.'%')
                     ->orWhere('answer', 'LIKE', '%'.$this->search.'%');                    
             })->when(filled($this->level), function ($query) {
-                    $query->where('level', $this->level);
-            })->inRandomOrder()->paginate(20),
+                    $query->where('level', $this->level);      
+            })->limit($this->items)->inRandomOrder()->get(),
         ])->layout('components.layouts.app', [
             'page' => 'quiz',
             'title' => $seo->title,

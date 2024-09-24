@@ -9,12 +9,9 @@ use Livewire\Component;
 class QuizItem extends Component
 {
     public Quiz $quiz;
-
     public bool $commenting = false;
-
     public int $counter;
-
-    public int $score;
+    public int $items;
 
     #[On('comment-off')]
     public function commentOff()

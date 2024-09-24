@@ -10,6 +10,9 @@ use App\Livewire\Admin\Contact as AdminContact;
 use App\Livewire\Admin\Comment;
 use App\Livewire\Admin\DownloadLimit;
 use App\Livewire\Admin\Scavenger as AdminScavenger;
+use App\Livewire\Admin\BibleOutline;
+use App\Livewire\Admin\OutlinePoint;
+use App\Livewire\Admin\Subpoint;
 use App\Livewire\Auth\Login;
 use App\Livewire\Front\About;
 use App\Livewire\Front\Contact;
@@ -38,5 +41,8 @@ Route::middleware(['auth'])->prefix('secret/weapon')->group(function () {
     Route::get('/contacts', AdminContact::class)->name('admin.contact'); 
     Route::get('/comments', Comment::class)->name('comments'); 
     Route::get('/download-limits', DownloadLimit::class)->name('download.limit'); 
+    Route::get('/outlines', BibleOutline::class)->name('outlines'); 
+    Route::get('/outline-points', OutlinePoint::class)->name('outline.points'); 
+    Route::get('/outline-subpoints', Subpoint::class)->name('outline.subpoints'); 
     Route::get('/logout', LogoutController::class)->name('logout');
 });

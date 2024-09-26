@@ -30,13 +30,7 @@ class Contact extends Component
             $this->sortDir = 'asc';
         } else {
             $this->sortDir = 'desc';
-        }   
-        if($column == "topic") 
-        {
-            $this->sortOrder = 'topic.name';
-        } else {
-            $this->sortOrder = $column;
-        }        
+        }         
     }
 
     public function addContact()
@@ -53,6 +47,11 @@ class Contact extends Component
     public function deleteContact($id)
     {
         $rec = ContactUser::find($id)->delete();
+    }
+
+    public function addReplied($id)
+    {
+        $c = ContactUser::find($id)->update(['replied' => 1]);
     }
 
     public function render()

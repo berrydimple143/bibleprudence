@@ -35,7 +35,7 @@
             <span>Save</span>
         </div>
         <div wire:click="commentOff"
-            class="w-18 cursor-pointer flex gap-1 items-center text-white text-sm bg-teal-800 p-1 border border-green-900 shrink">
+            class="w-18 cursor-pointer flex gap-1 items-center text-white text-sm bg-yellow-600 p-1 border border-green-900 shrink">
             <span>Cancel</span>
         </div>
     </div>

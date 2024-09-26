@@ -1,8 +1,5 @@
 <div class="flex flex-col p-2 border-2 border-dashed border-gray-400 mb-2 space-y-2">
-    <div class="flex text-black space-x-2">
-        <div class="font-bold">
-            {{ $counter }}.
-        </div>
+    <div class="flex text-black space-x-2">        
         <div class="font-bold">
             {{ $scavenger->question }} in {{ $scavenger->verse }}?
         </div>        

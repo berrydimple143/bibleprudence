@@ -13,9 +13,8 @@ class Scavenger extends Component
     use WithPagination;
 
     public int $counter = 1;
-
+    public int $items = 50;
     public int $score = 0;
-
     public $search = null;
 
     #[On('change-score')]
@@ -30,11 +29,20 @@ class Scavenger extends Component
         $this->search = $search;
     }
 
+    #[On('change-scavenger-items')]
+    public function changeItems($items)
+    {
+        session()->put('total_scavenger', (int)$items);
+        $this->items = (int)$items;
+    }
+    
     public function mount()
     {
         ini_set('max_execution_time', 36000);
         session()->put('scscore', 0);
         session()->put('scquestions', []);
+        session()->put('taken_scavenger', 0);
+        session()->put('total_scavenger', 50);
     }
 
     public function render()
@@ -46,7 +54,7 @@ class Scavenger extends Component
                 $query->where('question', 'LIKE', '%'.$this->search.'%')
                     ->orWhere('answer', 'LIKE', '%'.$this->search.'%')  
                     ->orWhere('verse', 'LIKE', '%'.$this->search.'%');                  
-            })->inRandomOrder()->paginate(20),
+            })->limit($this->items)->inRandomOrder()->get(),
         ])->layout('components.layouts.app', [
             'page' => 'scavenger',
             'title' => $seo->title,

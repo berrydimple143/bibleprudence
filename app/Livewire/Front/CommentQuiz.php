@@ -13,7 +13,7 @@ class CommentQuiz extends Component
     #[Validate('required|min:2|max:200')]
     public string $author = '';
 
-    #[Validate('required|min:2')]
+    #[Validate('required|min:2|max:900')]
     public string $message = '';
 
     public function save()

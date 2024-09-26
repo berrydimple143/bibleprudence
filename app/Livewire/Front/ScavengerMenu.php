@@ -10,7 +10,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 class ScavengerMenu extends Component
 {
     public int $score = 0;
-
+    public int $items = 50;
     public $search = null;
 
     public function mount($score)
@@ -21,6 +21,11 @@ class ScavengerMenu extends Component
     public function searchItem()
     {
         $this->dispatch('search-scavenger', search: $this->search);
+    }
+
+    public function changeItems()
+    {
+        $this->dispatch('change-scavenger-items', items: $this->items);     
     }
 
     public function generatePdf()

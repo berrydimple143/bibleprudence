@@ -31,7 +31,7 @@ class Subpoint extends Component
 
     public function editSubpoint($id)
     {
-        $this->point = AdminSubpoint::find($id);
+        $this->subpoint = AdminSubpoint::find($id);
         $this->showForm = 'edit';
     }
 

@@ -36,12 +36,11 @@ class ChoiceItem extends Component
     }    
 
     public function checkAnswer($selected)
-    {                   
-        $this->countSelected();
+    {          
         $total_quiz = (int)session('total_quiz');    
         $taken = (int)session('taken');     
 
-        if($taken == $total_quiz) {
+        if($taken == ($total_quiz - 1)) {
             if ($selected == $this->answer) {
                 $this->addScore($total_quiz, 'finish');
             }            
@@ -54,26 +53,27 @@ class ChoiceItem extends Component
                 $qstatus = 'failed';
                 $msg = "Sorry! You've failed the test. ".$scoreMsg;
             }           
-            $this->dispatch('result', $msg); 
-        } else {                                  
+            $this->dispatch('result', $msg);             
+        } else {
             $array_questions = session('questions'); 
             if ($selected == $this->answer) {
                 if(in_array($this->question, $array_questions)) {
                     $this->dispatch('wrong', 'You have already answered this question.'); 
                 }  else {
+                    $this->countSelected();
                     $this->addScore($total_quiz, 'scoring');   
                 }
             } else {
                 if(in_array($this->question, $array_questions)) {
                     $this->dispatch('wrong', 'You have already answered this question.');                 
                 } else {
+                    $this->countSelected();
                     $this->dispatch('wrong', 'Ooops! You are wrong.');
                 }
-            }
-            
+            }         
             array_push($array_questions, $this->question);
-            session()->put('questions', $array_questions);
-        }
+            session()->put('questions', $array_questions);            
+        }        
     }
 
     public function render()

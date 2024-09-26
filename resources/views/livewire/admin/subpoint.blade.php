@@ -63,7 +63,7 @@
                             <td class="text-left py-3 px-4">{{ $point->body }}</td>
                             <td class="text-left py-3 px-4">{{ $point->point->main }}</td>
                             <td class="text-left py-3 px-4">{{ $point->point->outline->theme }}</td>
-                            <td class="text-left py-3 px-4 flex gap-2 text-white">
+                            <td class="text-left py-3 px-4 flex gap-2 text-white">                             
                                 <button wire:click="editSubpoint('{{ $point->id }}')" type="button"
                                     class="bg-yellow-500 px-4 py-2 rounded-sm shadow-md flex items-center gap-1 hover:bg-yellow-700">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 448 512">

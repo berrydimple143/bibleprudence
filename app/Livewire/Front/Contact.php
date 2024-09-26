@@ -16,7 +16,7 @@ class Contact extends Component
     #[Validate('required|email|unique:contacts|min:2|max:200')]
     public string $email;
 
-    #[Validate('required|min:2')]
+    #[Validate('required|min:2|max:900')]
     public string $message;
 
     public function mount()
@@ -34,8 +34,8 @@ class Contact extends Component
 
         //Mail::to('virgilrosalita@gmail.com')->send(new ContactForm($contact));
 
-        $this->dispatch('email');
-
+        $this->dispatch('email', 'Email sent successfully!');
+        return redirect()->route('site');
     }
 
     public function render()

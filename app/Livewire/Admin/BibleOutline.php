@@ -5,6 +5,7 @@ namespace App\Livewire\Admin;
 use App\Models\Outline;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class BibleOutline extends Component
 {
@@ -32,6 +33,16 @@ class BibleOutline extends Component
     public function deleteOutline($id)
     {
         $rec = Outline::find($id)->delete();
+    }
+
+    public function download($id)
+    {   
+        $data = Outline::find($id);
+        $pdf = Pdf::loadView('pdfs.admin.outline', ['outline' => $data]);
+
+        return response()->streamDownload(function () use ($pdf) {
+            echo $pdf->stream();
+        }, $data->theme.'.pdf');
     }
 
     public function sort($column)

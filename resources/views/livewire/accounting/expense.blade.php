@@ -1,61 +1,72 @@
 <div class="p-5">
     @if($showForm == 'add')
-    <livewire:admin.create-limit></livewire:admin.create-limit>
+    <livewire:accounting.create-expense></livewire:accounting.create-expense>
     @elseif($showForm == 'edit')
-    <livewire:admin.update-limit :dlimit="$dlimit"></livewire:admin.update-limit>
+    <livewire:accounting.update-expense :expense="$expense"></livewire:accounting.update-expense>
     @else
     <div class="w-full">
         <div class="w-full bg-gray-800 border-b-2 border-dotted border-gray-600 p-4 flex items-center justify-between">
             <div class="flex gap-3">
-                <div class="flex gap-2 items-center">
+                <div class="hidden md:flex gap-2 items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="white" d="M0 96C0 60.7 28.7 32 64 32l384 0c35.3 0 64 28.7 64 64l0 320c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64L0 96zm64 0l0 64 64 0 0-64L64 96zm384 0L192 96l0 64 256 0 0-64zM64 224l0 64 64 0 0-64-64 0zm384 0l-256 0 0 64 256 0 0-64zM64 352l0 64 64 0 0-64-64 0zm384 0l-256 0 0 64 256 0 0-64z"/></svg>                    
-                    <span class="text-xl text-white">Download Limits Table</span>
+                    <span class="text-xl text-white">Expenses Table</span>
                 </div>
                 <p class="text-xl text-white flex items-center gap-4">
                     <span>
-                        <button wire:click="addDownloadLimit" wire:loading.class="opacity-50"
+                        <button title="Add Expense" wire:click="addExpense" wire:loading.class="opacity-50"
                             class="bg-green-500 px-3 py-1 rounded-md border border-white shadow-lg flex items-center gap-1 hover:bg-green-700">
                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 448 512">
                                 <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                                 <path fill="white"
                                     d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z" />
                             </svg>
-                            Add Limit
+                            <span class="hidden md:flex">Add expense</span>  
                         </button>
                     </span>
                 </p>
             </div>
             <input type="text" class="px-4 py-1 rounded-full border border-white shadow-lg"
-                wire:model.live.debounce.300ms="search" placeholder="Search download limit here ...">
+                wire:model.live.debounce.300ms="search" placeholder="Search here ...">
         </div>
         <div class="bg-white overflow-auto">
             <table class="min-w-full bg-white">
                 <thead class="bg-gray-800 text-white">
-                    <tr>
-                        <th class="w-5 text-left py-3 px-4 uppercase font-semibold text-sm">#</th>
-                        <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm"><span class="cursor-pointer" wire:click="sort('app')">App Name</span></th>
-                        <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm"><span class="cursor-pointer" wire:click="sort('limit')">Download Limit</span></th>
-                        <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm"><span class="cursor-pointer" wire:click="sort('items')">Number of Items</span></th>
-                        <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Action</th>
+                    <tr> 
+                        <th class="w-5 uppercase font-semibold text-sm">#</th>
+                        <th title="Click to sort by name" class="w-1/7 text-left py-3 px-4 uppercase font-semibold text-sm">
+                            <span class="cursor-pointer" wire:click="sort('name')">Name</span>            
+                        </th>
+                        <th title="Click to sort by amount" class="w-1/7 text-left py-3 px-4 uppercase font-semibold text-sm">
+                            <span class="cursor-pointer" wire:click="sort('amount')">Amount</span>       
+                        </th>
+                        <th title="Click to sort by description" class="hidden md:flex w-1/7 text-left py-3 px-4 uppercase font-semibold text-sm">
+                            <span class="cursor-pointer" wire:click="sort('description')">Description</span>
+                        </th>                        
+                        <th title="Click to sort by date received" class="w-36 text-left py-3 px-4 uppercase font-semibold text-sm">
+                            <span class="cursor-pointer" wire:click="sort('date_issued')">Date Disbursed</span>
+                        </th>
+                        <th class="text-left py-3 px-4 uppercase font-semibold text-sm text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody class="text-gray-700">
-                    @foreach($limits as $limit)
+                    @foreach($expenses as $expense)
                     <?php
-                        $index = ($limits ->currentpage()-1) * $limits ->perpage() + $loop->index + 1;
+                        $index = ($expenses ->currentpage()-1) * $expenses ->perpage() + $loop->index + 1;
                         $addClass = '';
                         if($index % 2 === 0) {
                             $addClass = 'bg-gray-200';
                         }
+                        $dt = formatDate($expense->date_issued);
                     ?>
-                    <tr class="{{ $addClass }}" wire:key="{{ $limit->id }}">
-                        <td class="w-5 text-left py-3 px-4 font-semibold text-sm">{{ $index }}</td>
-                        <td class="w-1/3 text-left py-3 px-4">{{ $limit->app }}</td>
-                        <td class="w-1/3 text-left py-3 px-4">{{ $limit->limit }}</td>
-                        <td class="w-1/3 text-left py-3 px-4">{{ $limit->items }}</td>
-                        <td class="text-left py-3 px-4 flex gap-2 text-white">
-                            <button wire:click="editDownloadLimit('{{ $limit->id }}')" type="button"
-                                class="bg-yellow-500 px-4 py-2 rounded-sm shadow-md flex items-center gap-1 hover:bg-yellow-700">
+                    <tr class="{{ $addClass }}" wire:key="{{ $expense->id }}">
+                        <td class="text-left py-3 px-4 font-semibold text-sm">{{ $index }}</td>
+                        <td class="text-left py-3 px-4">{{ $expense->name }}</td>
+                        <td class="text-left py-3 px-4">{{ $expense->currency }} {{ $expense->amount }}</td>
+                        <td class="hidden md:flex text-left py-3 px-4">{{ $expense->description }}</td>
+                        <td class="text-left py-3 px-4">{{ $dt }}</td>
+                        <td class="text-left py-3 px-4 flex gap-2 text-white items-center justify-center">
+                            <button wire:click="editExpense('{{ $expense->id }}')" type="button"
+                                class="px-2 py-1 md:px-4 md:py-2 bg-yellow-500 rounded-sm shadow-md flex items-center gap-1 hover:bg-yellow-700">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 448 512">
                                     <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                                     <path fill="white"
@@ -63,9 +74,9 @@
                                 </svg>
                                 Edit
                             </button>
-                            <button wire:confirm="Are you sure you want to delete this download limit?"
-                                wire:click="deleteDownloadLimit({{ $limit->id }})" type="button"
-                                class="bg-red-500 px-4 py-2 rounded-sm shadow-md flex items-center gap-1 hover:bg-red-700">
+                            <button wire:confirm="Are you sure you want to delete this expense?"
+                                wire:click="deleteExpense({{ $expense->id }})" type="button"
+                                class="px-2 py-1 md:px-4 md:py-2 bg-red-500 rounded-sm shadow-md flex items-center gap-1 hover:bg-red-700">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 448 512">
                                     <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                                     <path fill="white"
@@ -79,6 +90,6 @@
             </table>
         </div>
     </div>
-    {{ $limits->links() }}
+    {{ $expenses->links() }}
     @endif
 </div>

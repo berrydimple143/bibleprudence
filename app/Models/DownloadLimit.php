@@ -11,6 +11,7 @@ class DownloadLimit extends Model
 
     protected $fillable = [
         'limit',
+        'items',
         'app',
     ];
 }

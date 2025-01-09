@@ -1,5 +1,10 @@
 <?php
 
+use App\Livewire\Accounting\Dashboard as AccountingDashboard;
+use App\Livewire\Accounting\Weekly;
+use App\Livewire\Accounting\Income;
+use App\Livewire\Accounting\Expense;
+use App\Livewire\Accounting\Attendance;
 use App\Livewire\Admin\Dashboard;
 use App\Livewire\Admin\Quiz;
 use App\Livewire\Admin\Choice;
@@ -29,6 +34,14 @@ Route::get('/about', About::class)->name('about');
 Route::get('/contact', Contact::class)->name('contact');
 Route::get('/privacy', Privacy::class)->name('privacy');
 Route::get('/secret/weapon/login', Login::class)->name('secret.login');
+
+Route::prefix('admin')->group(function () {
+    Route::get('/reports/yearly', AccountingDashboard::class)->name('accounting'); 
+    Route::get('/reports/monthly', Weekly::class)->name('accounting.weekly'); 
+    Route::get('/income', Income::class)->name('income'); 
+    Route::get('/expenses', Expense::class)->name('expenses');
+    Route::get('/attendance', Attendance::class)->name('attendance');
+});
 
 Route::middleware(['auth'])->prefix('secret/weapon')->group(function () {
     Route::get('/', Dashboard::class)->name('secret');  

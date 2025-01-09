@@ -3,6 +3,7 @@
 namespace App\Livewire\Front;
 
 use App\Models\Quiz;
+use App\Models\DownloadLimit;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -61,11 +62,13 @@ class Site extends Component
         session()->put('questions', []);
         session()->put('taken', 0);
         session()->put('total_quiz', 50);
+        $itemData = DownloadLimit::select('items')->where('app', 'Bible Quiz')->first();
+        $this->items = (int)$itemData->items;
     }
 
     public function render()
     {
-        $seo = HelperController::getSeo('Quiz');
+        $seo = HelperController::getSeo('Quiz');        
 
         return view('livewire.front.site', [
             'quizzes' => Quiz::when(filled($this->topic), function ($query) {

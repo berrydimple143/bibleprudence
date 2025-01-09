@@ -24,7 +24,7 @@
         <div class="bg-green-300 p-2 border border-green-500">
             <label for="">Items:</label>
             <select class="bg-green-300" wire:model="items" wire:change="changeItems">
-                @for($i=10; $i<=300; $i+=10)
+                @for($i=10; $i<=$items; $i+=5)
                     <option value="{{ $i }}">{{ $i }}</option>
                 @endfor                
             </select>

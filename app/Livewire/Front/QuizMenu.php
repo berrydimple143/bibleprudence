@@ -12,19 +12,21 @@ class QuizMenu extends Component
 {
     public string $topic = '';
     public string $level = '';
-    public int $items = 50;
+    public int $items = 100;
     public int $score = 0;
     public $search = null;
 
     public function mount($score)
     {
+        $itemData = DownloadLimit::select('items')->where('app', 'Bible Quiz')->first();
         $this->score = $score;
+        $this->items = (int)$itemData->items;
     }
 
     public function changeTopic()
     {
         $this->dispatch('change-topic', topic: $this->topic);
-    }
+    } 
 
     public function changeLevel()
     {

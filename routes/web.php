@@ -4,6 +4,7 @@ use App\Livewire\Admin\Dashboard;
 use App\Livewire\Admin\Quiz;
 use App\Livewire\Admin\Choice;
 use App\Livewire\Admin\Topic;
+use App\Livewire\Admin\Book;
 use App\Livewire\Admin\Target;
 use App\Livewire\Admin\Seo;
 use App\Livewire\Admin\Contact as AdminContact;
@@ -17,6 +18,8 @@ use App\Livewire\Auth\Login;
 use App\Livewire\Front\About;
 use App\Livewire\Front\Contact;
 use App\Livewire\Front\Privacy;
+use App\Livewire\Front\Terms;
+use App\Livewire\Front\Disclaimer;
 use App\Livewire\Front\Site;
 use App\Livewire\Front\Scavenger;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +31,8 @@ Route::get('/scavenger', Scavenger::class)->name('scavenger');
 Route::get('/about', About::class)->name('about');
 Route::get('/contact', Contact::class)->name('contact');
 Route::get('/privacy', Privacy::class)->name('privacy');
+Route::get('/disclaimer', Disclaimer::class)->name('disclaimer');
+Route::get('/terms-and-conditions', Terms::class)->name('terms');
 Route::get('/secret/weapon/login', Login::class)->name('secret.login');
 
 Route::middleware(['auth'])->prefix('secret/weapon')->group(function () {
@@ -44,5 +49,6 @@ Route::middleware(['auth'])->prefix('secret/weapon')->group(function () {
     Route::get('/outlines', BibleOutline::class)->name('outlines'); 
     Route::get('/outline-points', OutlinePoint::class)->name('outline.points'); 
     Route::get('/outline-subpoints', Subpoint::class)->name('outline.subpoints'); 
+    Route::get('/books', Book::class)->name('books'); 
     Route::get('/logout', LogoutController::class)->name('logout');
 });

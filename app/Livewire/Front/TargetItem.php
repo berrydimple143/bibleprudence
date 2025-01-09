@@ -70,37 +70,15 @@ class TargetItem extends Component
                     $this->dispatch('wrong', 'You have already answered this question.');                 
                 } else {
                     $this->countSelected();
-                    $this->dispatch('wrong', 'Ooops! You are wrong.');
+                    $oldScore = (int)session('scscore');
+                    $errmsg = 'Ooops! Wrong. The answer is "'.$this->answer.'". Score: '. $oldScore.'.';
+                    $this->dispatch('wrong', $errmsg);
                 }
             }
             
             array_push($array_questions, $fullText);
             session()->put('scquestions', $array_questions);
-        }
-
-        // $array_questions = session('scquestions');
-        // $fullText = $this->question .' in '.$this->verse; 
-
-        // if ($selected == $this->answer) {
-        //     if(in_array($fullText, $array_questions)) {                 
-        //         $this->dispatch('wrong', 'You have already answered this question.'); 
-        //     } else {
-        //         $sc = (int)session('scscore');
-        //         $newScore = $sc + 1;
-        //         session()->put('scscore', $newScore);
-        //         $msg = 'You are correct and your score is "'.$newScore .'"';
-        //         $this->dispatch('correct', $msg);  
-        //     }
-        // } else {
-        //     if(in_array($fullText, $array_questions)) {
-        //         $this->dispatch('wrong', 'You have already answered this question.');                
-        //     } else {
-        //         $this->dispatch('wrong', 'Ooops! You are wrong.');
-        //     }
-        // }
-           
-        // array_push($array_questions, $fullText);
-        // session()->put('scquestions', $array_questions);
+        }       
     }
 
     public function render()
@@ -108,3 +86,4 @@ class TargetItem extends Component
         return view('livewire.front.target-item');
     }
 }
+

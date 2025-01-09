@@ -60,7 +60,8 @@ class DownloadLimit extends Component
         return view('livewire.admin.download-limit', [
                 'limits' => DownLimit::when(filled($this->search), function ($query) {
                     $query->where('limit', 'LIKE', '%'.$this->search.'%')
-                          ->orWhere('app', 'LIKE', '%'.$this->search.'%');       
+                          ->orWhere('app', 'LIKE', '%'.$this->search.'%')  
+                          ->orWhere('items', 'LIKE', '%'.$this->search.'%');    
                 })->when(filled($this->sortOrder), function ($query) {
                         $query->orderBy($this->sortOrder, $this->sortDir);          
                 })->orderBy('created_at', 'desc')->paginate(10),
@@ -69,3 +70,4 @@ class DownloadLimit extends Component
         ]);
     }
 }
+

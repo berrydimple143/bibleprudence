@@ -16,6 +16,9 @@ class UpdateLimit extends Component
     #[Validate('required')]
     public string $app = '';
 
+    #[Validate('nullable')]
+    public int $items = 50;
+
     public function save()
     {
         $data = $this->validate();
@@ -32,6 +35,7 @@ class UpdateLimit extends Component
     public function mount($dlimit)
     {
         $this->limit = $dlimit->limit;    
+        $this->items = $dlimit->items;  
         $this->app = $dlimit->app;  
     }
 
@@ -40,3 +44,4 @@ class UpdateLimit extends Component
         return view('livewire.admin.update-limit');
     }
 }
+

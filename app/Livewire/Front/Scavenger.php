@@ -13,7 +13,7 @@ class Scavenger extends Component
     use WithPagination;
 
     public int $counter = 1;
-    public int $items = 50;
+    public int $items = 100;
     public int $score = 0;
     public $search = null;
 
@@ -42,7 +42,7 @@ class Scavenger extends Component
         session()->put('scscore', 0);
         session()->put('scquestions', []);
         session()->put('taken_scavenger', 0);
-        session()->put('total_scavenger', 50);
+        session()->put('total_scavenger', 100);
     }
 
     public function render()

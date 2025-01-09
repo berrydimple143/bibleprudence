@@ -42,7 +42,8 @@ class Contact extends Component
     {
         return view('livewire.front.contact')->layout('components.layouts.app', [
             'page' => 'contact',
-            'title' => 'Bible Quiz - Contact Us',
+            'title' => 'Bible Prudence - Contact Us',
         ]);
     }
 }
+

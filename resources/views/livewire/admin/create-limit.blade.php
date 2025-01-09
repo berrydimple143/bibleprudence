@@ -18,6 +18,11 @@
             <input type="text" placeholder="Type limit here ..." class="border border-green-400 p-2 outline-none grow" wire:model="limit" id="limit"
                 name="limit">
         </div>       
+        <div class="flex items-center gap-2 grow">
+            <label for="items" class="font-bold text-lg">Items:</label>
+            <input type="text" placeholder="Type items here ..." class="border border-green-400 p-2 outline-none grow" wire:model="items" id="items"
+                name="items">
+        </div>   
     </div>    
     <div class="flex gap-4 ml-20">
         <button wire:click="save" class="border border-green-400 px-4 py-2 hover:bg-green-300">Save</button>

@@ -4,6 +4,7 @@ namespace App\Livewire\Admin;
 
 use App\Models\Quiz;
 use App\Models\Topic;
+use App\Models\Book;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
@@ -24,6 +25,9 @@ class CreateQuiz extends Component
     #[Validate('required')]
     public $topic_id;
 
+    #[Validate('required')]
+    public $book_id;
+
     public function save()
     {
         $data = $this->validate();
@@ -41,6 +45,7 @@ class CreateQuiz extends Component
     {
         return view('livewire.admin.create-quiz', [
             'topics' => Topic::all(),
+            'books' => Book::all(),            
         ]);
     }
 }

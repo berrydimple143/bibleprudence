@@ -15,7 +15,8 @@ class Privacy extends Component
     {
         return view('livewire.front.privacy')->layout('components.layouts.app', [
             'page' => 'privacy',
-            'title' => 'Bible Quiz - Privacy Policy',
+            'title' => 'Bible Prudence - Privacy Policy',
         ]);
     }
 }
+

@@ -12,8 +12,8 @@
             interactive and very insightful. As you can notice the Bible quiz game is fetched randomly and has a comment
             button
             at the right of the question so that users can interact with the particular question or its
-            answer and its downloadable pdf file (up to 100 items) contains the Bible verse(s) on which a question's answer
-            can be found.
+            answer and its downloadable pdf file (up to {{ $qlimit->limit }} items) contains the Bible verse(s) on which a question's answer
+            can be found. So also with the Bible Scavenger game.
         </p>
         <p class="px-3 text-justify">
             We've designed every application on this website with this goal "To be more focused in God's

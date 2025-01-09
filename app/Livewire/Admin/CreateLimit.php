@@ -14,6 +14,9 @@ class CreateLimit extends Component
     #[Validate('required')]
     public string $app = '';
 
+    #[Validate('nullable')]
+    public int $items = 50;
+
     public function save()
     {
         $data = $this->validate();
@@ -32,3 +35,4 @@ class CreateLimit extends Component
         return view('livewire.admin.create-limit');
     }
 }
+

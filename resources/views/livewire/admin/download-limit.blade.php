@@ -35,6 +35,7 @@
                         <th class="w-5 text-left py-3 px-4 uppercase font-semibold text-sm">#</th>
                         <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm"><span class="cursor-pointer" wire:click="sort('app')">App Name</span></th>
                         <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm"><span class="cursor-pointer" wire:click="sort('limit')">Download Limit</span></th>
+                        <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm"><span class="cursor-pointer" wire:click="sort('items')">Number of Items</span></th>
                         <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Action</th>
                     </tr>
                 </thead>
@@ -51,6 +52,7 @@
                         <td class="w-5 text-left py-3 px-4 font-semibold text-sm">{{ $index }}</td>
                         <td class="w-1/3 text-left py-3 px-4">{{ $limit->app }}</td>
                         <td class="w-1/3 text-left py-3 px-4">{{ $limit->limit }}</td>
+                        <td class="w-1/3 text-left py-3 px-4">{{ $limit->items }}</td>
                         <td class="text-left py-3 px-4 flex gap-2 text-white">
                             <button wire:click="editDownloadLimit('{{ $limit->id }}')" type="button"
                                 class="bg-yellow-500 px-4 py-2 rounded-sm shadow-md flex items-center gap-1 hover:bg-yellow-700">
@@ -80,3 +82,4 @@
     {{ $limits->links() }}
     @endif
 </div>
+

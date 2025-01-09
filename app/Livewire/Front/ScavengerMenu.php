@@ -10,7 +10,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 class ScavengerMenu extends Component
 {
     public int $score = 0;
-    public int $items = 50;
+    public int $items = 100;
     public $search = null;
 
     public function mount($score)

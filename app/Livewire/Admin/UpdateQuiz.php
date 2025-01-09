@@ -4,6 +4,7 @@ namespace App\Livewire\Admin;
 
 use App\Models\Quiz;
 use App\Models\Topic;
+use App\Models\Book;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
@@ -26,6 +27,9 @@ class UpdateQuiz extends Component
     #[Validate('required')]
     public $topic_id;
 
+    #[Validate('required')]
+    public $book_id;
+
     public function save()
     {
         $data = $this->validate();
@@ -46,12 +50,14 @@ class UpdateQuiz extends Component
         $this->verse = $quiz->verse;
         $this->level = $quiz->level;
         $this->topic_id = $quiz->topic_id;
+        $this->book_id = $quiz->book_id;
     }
 
     public function render()
     {
         return view('livewire.admin.update-quiz', [
             'topics' => Topic::all(),
+            'books' => Book::all(),  
         ]);
     }
 }

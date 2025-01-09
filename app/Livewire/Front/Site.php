@@ -3,6 +3,7 @@
 namespace App\Livewire\Front;
 
 use App\Models\Quiz;
+use App\Models\DownloadLimit;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -17,16 +18,23 @@ class Site extends Component
     ];
 
     public $search = null;
-    public int $items = 50;
+    public int $items = 100;
     public int $counter = 1;
     public int $score = 0;
     public $topic = null;
+    public $book = null;
     public $level = null;
 
     #[On('change-score')]
     public function changeScore($scr)
     {
         $this->score += $scr;
+    }
+
+    #[On('change-book')]
+    public function changeBook($book)
+    {
+        $this->book = $book;
     }
 
     #[On('change-topic')]
@@ -60,7 +68,9 @@ class Site extends Component
         session()->put('score', 0);
         session()->put('questions', []);
         session()->put('taken', 0);
-        session()->put('total_quiz', 50);
+	session()->put('total_quiz', 100);
+	$itemData = DownloadLimit::select('items')->where('app', 'Bible Quiz')->first();
+        $this->items = (int)$itemData->items;
     }
 
     public function render()
@@ -70,6 +80,8 @@ class Site extends Component
         return view('livewire.front.site', [
             'quizzes' => Quiz::when(filled($this->topic), function ($query) {
                 $query->where('topic_id', $this->topic);
+            })->when(filled($this->book), function ($query) {
+                $query->where('book_id', $this->book);
             })->when(filled($this->search), function ($query) {
                 $query->where('question', 'LIKE', '%'.$this->search.'%')
                     ->orWhere('answer', 'LIKE', '%'.$this->search.'%');                    

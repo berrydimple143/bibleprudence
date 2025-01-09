@@ -5,20 +5,29 @@ namespace App\Livewire\Front;
 use App\Models\DownloadLimit;
 use App\Models\Quiz;
 use App\Models\Topic;
+use App\Models\Book;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Livewire\Component;
 
 class QuizMenu extends Component
 {
     public string $topic = '';
+    public string $book = '';
     public string $level = '';
-    public int $items = 50;
+    public int $items = 100;
     public int $score = 0;
     public $search = null;
 
     public function mount($score)
     {
-        $this->score = $score;
+	    $this->score = $score;
+	    $itemData = DownloadLimit::select('items')->where('app', 'Bible Quiz')->first();
+	    $this->items = (int)$itemData->items;
+    }
+
+    public function changeBook()
+    {
+        $this->dispatch('change-book', book: $this->book);
     }
 
     public function changeTopic()
@@ -65,6 +74,7 @@ class QuizMenu extends Component
     {
         return view('livewire.front.quiz-menu', [
             'topics' => Topic::all(),
+            'books' => Book::all(),
         ]);
     }
 }

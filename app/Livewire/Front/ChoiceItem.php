@@ -68,7 +68,9 @@ class ChoiceItem extends Component
                     $this->dispatch('wrong', 'You have already answered this question.');                 
                 } else {
                     $this->countSelected();
-                    $this->dispatch('wrong', 'Ooops! You are wrong.');
+                    $oldScore = (int)session('score');
+                    $errmsg = 'Ooops! Wrong. The answer is "'.$this->answer.'" in '.$this->verse.'. Current Score: '. $oldScore.'.';
+                    $this->dispatch('wrong', $errmsg);
                 }
             }         
             array_push($array_questions, $this->question);
@@ -81,3 +83,4 @@ class ChoiceItem extends Component
         return view('livewire.front.choice-item');
     }
 }
+

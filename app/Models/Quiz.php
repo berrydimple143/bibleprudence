@@ -18,11 +18,17 @@ class Quiz extends Model
         'verse',
         'level',
         'topic_id',
+        'book_id',
     ];
 
     public function topic(): BelongsTo
     {
         return $this->belongsTo(Topic::class);
+    }
+
+    public function book(): BelongsTo
+    {
+        return $this->belongsTo(Book::class);
     }
 
     public function selections(): HasMany

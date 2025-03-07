@@ -11,6 +11,7 @@ use Livewire\Component;
 
 class QuizMenu extends Component
 {
+    public int $max = 200;
     public string $topic = '';
     public string $book = '';
     public string $level = '';

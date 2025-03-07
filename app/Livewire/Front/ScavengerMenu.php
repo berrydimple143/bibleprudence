@@ -9,6 +9,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class ScavengerMenu extends Component
 {
+    public int $max = 200;
     public int $score = 0;
     public int $items = 100;
     public $search = null;

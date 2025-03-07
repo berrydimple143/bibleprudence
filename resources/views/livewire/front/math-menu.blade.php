@@ -1,17 +1,8 @@
 <div class="flex-wrap sm:flex items-center justify-between">
     <div class="flex-wrap sm:flex items-start p-2 border border-gray-400 mb-2 space-x-2">
         <div class="bg-green-300 p-2 border border-green-500">
-            <h1 class="font-bold">Bible Quiz</h1>
-        </div>
-        <div class="bg-green-300 p-2 border border-green-500">
-            <label for="">Topic:</label>
-            <select class="bg-green-300" wire:model="topic" wire:change="changeTopic">
-                <option value="">All</option>
-                @foreach ($topics as $topic)
-                <option value="{{ $topic->id }}">{{ $topic->name }}</option>
-                @endforeach
-            </select>
-        </div>
+            <h1 class="font-bold">Bible Math</h1>
+        </div>        
         <div class="bg-green-300 p-2 border border-green-500">
             <label for="">Level:</label>
             <select class="bg-green-300" wire:model="level" wire:change="changeLevel">
@@ -41,7 +32,7 @@
             </svg>
             <span>Download PDF</span>
         </div>
-        <a href="{{ route('site') }}" @click="$refs.refreshPage.play()">
+        <a href="{{ route('bmath') }}" @click="$refs.refreshPage.play()">
             <div
                 class="flex items-center space-x-1 text-white bg-green-500 p-2 border border-green-800 border-dashed cursor-pointer hover:bg-teal-800">
                 <svg xmlns="http://www.w3.org/2000/svg" class="text-white" viewBox="0 0 24 24" width="24" height="24"

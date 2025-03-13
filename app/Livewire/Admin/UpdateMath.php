@@ -44,6 +44,7 @@ class UpdateMath extends Component
         $this->answer = $math->answer;
         $this->verses = $math->verses;
         $this->level = $math->level;
+        $this->formula = $math->formula;
     }
 
     public function render()

@@ -1,7 +1,10 @@
 <div class="flex flex-col p-2 mb-2 space-y-2">
     <div class="flex text-black space-x-2">        
         <div class="font-bold">
-            {{ $math->question }}?
+            {{ $math->question }}? 
+            @if(!empty($math->formula))
+               <span class="text-sm font-light italic">Formula: {{ $math->formula }}</span>   
+            @endif
         </div>
     </div>
     <div class="flex-wrap space-x-6 sm:flex">

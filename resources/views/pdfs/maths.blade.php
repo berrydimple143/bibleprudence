@@ -24,7 +24,7 @@
             <h4>Bible Math - {{ ($level == '' || $level == null || empty($level)) ? 'All' : $level }}</h4>
             @foreach ($maths as $math)
             <p>
-                {{ $loop->index + 1 }}.) {{ $math->question }} Answer: {{ $math->answer }} ({{ $math->verses }})
+                {{ $loop->index + 1 }}.) {{ $math->question }}? @if(!empty($math->formula)) Formula: {{ $math->formula }} - @endif Answer: {{ $math->answer }} ({{ $math->verses }})
             </p>
             @endforeach
         @endif

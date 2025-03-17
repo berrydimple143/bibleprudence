@@ -11,8 +11,8 @@
     <meta name="application-name" content="{{ $application_name ?? 'Bible Prudence' }}">
     <meta name="generator" content="{{ $generator ?? 'Laravel Livewire 3.0' }}">
     <meta name="robots" content="{{ $robots ?? 'index, follow' }}">
-    @if($page == "quiz" || $page == "scavenger")
-	<meta name="google-adsense-account" content="ca-pub-5275045752917947">
+    @if($page == "quiz" || $page == "scavenger" || $page == "math")
+	   <meta name="google-adsense-account" content="ca-pub-5275045752917947">
     @endif
     <link rel="icon" type="image/x-icon" href="{{ asset('images/logo.ico') }}">
     <script src="https://cdn.tailwindcss.com"></script>

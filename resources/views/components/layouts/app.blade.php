@@ -16,16 +16,18 @@
     @endif
     <link rel="icon" type="image/x-icon" href="{{ asset('images/logo.ico') }}">
     <script src="https://cdn.tailwindcss.com"></script>
-    @if($page == "quiz" || $page == "scavenger") 
+    @if($page == "quiz" || $page == "scavenger" || $page == "math")
 	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5275045752917947"
      crossorigin="anonymous"></script>
     @endif
 </head>
 
 <body class="text-zinc-100 text-md bg-green-50">
-    <amp-auto-ads type="adsense"
-        data-ad-client="ca-pub-7121193606171576">
-    </amp-auto-ads>
+    @if($page == "quiz" || $page == "scavenger" || $page == "math")
+        <amp-auto-ads type="adsense"
+            data-ad-client="ca-pub-7121193606171576">
+        </amp-auto-ads>
+    @endif
     <div class="mx-auto">
         @include('components.parts.header')
         <x-email></x-email>

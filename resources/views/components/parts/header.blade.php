@@ -22,7 +22,7 @@
                 </div>
             </a>
             <a href="{{ route('bmath') }}" title="Bible Math">
-                <div class="@if($page == 'bmath') bg-green-600 @endif cursor-pointer flex gap-1 items-center border border-white p-2 hover:bg-green-600">
+                <div class="@if($page == 'math') bg-green-600 @endif cursor-pointer flex gap-1 items-center border border-white p-2 hover:bg-green-600">
                     <svg fill="#ffffff" height="24" width="24" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
                          viewBox="0 0 460 460" xml:space="preserve">
                     <g id="XMLID_241_">

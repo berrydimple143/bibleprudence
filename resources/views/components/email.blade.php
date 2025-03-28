@@ -1,4 +1,4 @@
-<div x-data="{ body: null }" x-show="body" x-on:email.window="
+<div x-data="{ body: null }" x-cloak x-show="body" x-on:email.window="
         body = $event.detail
         setTimeout(() => {
             body = null

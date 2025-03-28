@@ -6,9 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $title ?? 'Bible Quiz' }}</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('images/logo.ico') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.js"></script>    
     <style>
         @import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
+
+        .trix-content {
+            height: 300px;
+        }
 
         .font-family-karla {
             font-family: karla;

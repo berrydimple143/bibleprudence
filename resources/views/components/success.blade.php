@@ -1,4 +1,4 @@
-<div x-data="{ msg: null, success: false, error: false }" x-show="msg" x-on:success.window="
+<div x-data="{ msg: null, success: false, error: false }" x-cloak x-show="msg" x-on:success.window="
         msg = $event.detail;
         if(msg == 'success') {
             success = true;

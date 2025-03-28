@@ -1,4 +1,4 @@
-<div x-data="{ body: null, tp: 0 }" x-show="body" x-on:correct.window="
+<div x-data="{ body: null, tp: 0 }" x-cloak x-show="body" x-on:correct.window="
         body = $event.detail;    
         tp = $event.target.offsetTop - 60;
         setTimeout(() => {

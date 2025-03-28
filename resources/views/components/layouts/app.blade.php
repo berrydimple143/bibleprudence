@@ -11,19 +11,24 @@
     <meta name="application-name" content="{{ $application_name ?? 'Bible Prudence' }}">
     <meta name="generator" content="{{ $generator ?? 'Laravel Livewire 3.0' }}">
     <meta name="robots" content="{{ $robots ?? 'index, follow' }}">
-    @if($page == "quiz" || $page == "scavenger" || $page == "math")
+    @if($page == "quiz" || $page == "scavenger" || $page == "math" || $page == "blog" || $page == "post")
 	   <meta name="google-adsense-account" content="ca-pub-5275045752917947">
     @endif
     <link rel="icon" type="image/x-icon" href="{{ asset('images/logo.ico') }}">
     <script src="https://cdn.tailwindcss.com"></script>
-    @if($page == "quiz" || $page == "scavenger" || $page == "math")
+    @if($page == "quiz" || $page == "scavenger" || $page == "math" || $page == "blog" || $page == "post")
 	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5275045752917947"
      crossorigin="anonymous"></script>
     @endif
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+    </style>
 </head>
 
 <body class="text-zinc-100 text-md bg-green-50">
-    @if($page == "quiz" || $page == "scavenger" || $page == "math")
+    @if($page == "quiz" || $page == "scavenger" || $page == "math" || $page == "blog" || $page == "post")
         <amp-auto-ads type="adsense"
             data-ad-client="ca-pub-7121193606171576">
         </amp-auto-ads>

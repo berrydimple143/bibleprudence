@@ -4,6 +4,8 @@ namespace App\Livewire\Front;
 
 use Livewire\Component;
 use App\Models\Blog; 
+use Livewire\Attributes\On;
+use Illuminate\Support\Facades\Auth;
 
 class Post extends Component
 {
@@ -13,7 +15,12 @@ class Post extends Component
     public function mount($id, $slug)
     {
         $this->post = Blog::find($id);
-        $this->slug = $slug;
+        $this->slug = $slug;        
+        if(Auth::check()) {
+            session()->put('user_id', Auth::id());
+        } else {
+            session()->forget(['user_id']);
+        }        
     }
 
     public function render()

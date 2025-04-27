@@ -68,8 +68,8 @@ class Site extends Component
         session()->put('score', 0);
         session()->put('questions', []);
         session()->put('taken', 0);
-	session()->put('total_quiz', 100);
-	$itemData = DownloadLimit::select('items')->where('app', 'Bible Quiz')->first();
+	    session()->put('total_quiz', 100);
+	    $itemData = DownloadLimit::select('items')->where('app', 'Bible Quiz')->first();
         $this->items = (int)$itemData->items;
     }
 

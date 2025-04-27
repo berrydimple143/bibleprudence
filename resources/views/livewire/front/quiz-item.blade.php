@@ -1,4 +1,4 @@
-<div class="flex flex-col p-2 mb-2 space-y-2">
+<div class="flex flex-col p-2 mb-2 space-y-2 border border-green-50 hover:border hover:border-gray-600 hover:border-dotted">
     <div class="flex text-black space-x-2">        
         <div class="font-bold">
             {{ $quiz->question }}
@@ -14,7 +14,7 @@
             </svg>
         </div>
     </div>
-    <div class="flex-wrap space-x-6 sm:flex">
+    <div class="sm:flex">
         @foreach ($quiz->selections as $choice)
         <livewire:front.choice-item :choice="$choice" :items="$items" :verse="$quiz->verse" :question="$quiz->question" :answer="$quiz->answer"
             wire:key="{{ $choice->id }}">

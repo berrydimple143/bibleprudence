@@ -27,4 +27,9 @@ class Blog extends Model
     {
         return $this->hasMany(BlogComment::class);
     }
+
+    public function likes(): HasMany
+    {
+        return $this->hasMany(Like::class);
+    }
 }

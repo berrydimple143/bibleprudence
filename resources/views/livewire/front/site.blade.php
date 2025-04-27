@@ -1,4 +1,4 @@
-<div class="flex flex-col text-gray-900 px-2 py-3">
+<div class="flex flex-col text-gray-900 px-2 py-3">    
     <livewire:front.quiz-menu :score="$score"></livewire:front.quiz-menu>
     @if($quizzes->count())
         @foreach ($quizzes as $quiz)

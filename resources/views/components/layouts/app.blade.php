@@ -40,6 +40,8 @@
         <x-wrong></x-wrong>
         <x-result></x-result>
         <x-success></x-success>
+        <x-signin></x-signin>
+        <x-access></x-access>
         {{ $slot }}
         @include('components.parts.footer')
     </div>

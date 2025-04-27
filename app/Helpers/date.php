@@ -15,7 +15,13 @@ function formatDateHour($dt)
 
 function limitWords($phrase, $limit, $last)
 {
-    return Str::limit($phrase, $limit, $last);
+    //return Str::limit($phrase, $limit, $last);
+    return substr($phrase, 0, $limit) . $last;
+}
+
+function makePlural($word, $num)
+{
+    return Str::plural($word, $num);
 }
 
 function getSlug($phrase)

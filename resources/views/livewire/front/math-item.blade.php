@@ -1,4 +1,4 @@
-<div class="flex flex-col p-2 mb-2 space-y-2">
+<div class="flex flex-col p-2 mb-2 space-y-2 border border-green-50 hover:border hover:border-gray-600 hover:border-dotted">
     <div class="flex text-black space-x-2">        
         <div class="font-bold">
             {{ $math->question }}? 
@@ -7,7 +7,7 @@
             @endif
         </div>
     </div>
-    <div class="flex-wrap space-x-6 sm:flex">
+    <div class="sm:flex">
         @foreach ($math->options as $choice)
         <livewire:front.math-choice-item :choice="$choice" :items="$items" :verses="$math->verses" :question="$math->question" :answer="$math->answer"
             wire:key="{{ $choice->id }}">

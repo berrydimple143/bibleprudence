@@ -6,6 +6,7 @@
             <livewire:front.blog-item :blog="$blog" wire:key="{{ $blog->id }}">
             </livewire:front.blog-item>
         @endforeach
+        {{ $blogs->links() }}
     @elseif($count > 0)
         <p class="font-bold text-2xl text-red-500 flex flex-row min-h-screen justify-center items-center">No blogs posted yet for this search item... Please bear with us!</p>
     @else

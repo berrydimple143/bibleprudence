@@ -4,11 +4,16 @@
         $dp = $blog->date_posted;
         $bd = strip_tags($blog->body);
         $slug = strtolower(getSlug($tl));
+        $none = 'none';
     ?>
     <a wire:navigate.hover href="{{ route('post', ['id' => $blog->id, 'slug' => $slug]) }}" title="{{ $tl }}"><img src="{{ $blog->image }}" class="w-56 md:w-64 cursor-pointer object-center" alt="Image for {{ $tl }}"></a>
     <div class="flex flex-col">
         <a wire:navigate.hover href="{{ route('post', ['id' => $blog->id, 'slug' => $slug]) }}" title="{{ $tl }}">
-            <h1 class="font-bold text-2xl cursor-pointer text-blue-500">{{ $tl }}</h1>
+            <h1 class="font-bold text-2xl cursor-pointer text-blue-500">{{ $tl }}
+                <span class="text-white text-lg bg-yellow-400 px-2 rounded-full">                   
+                    {{ $blog->likes->count() }} {{ makePlural('Like', $blog->likes->count()) }}
+                </span>
+            </h1>
         </a>
         <p class="font-light italic text-xs">Date Posted: {{ formatDate($dp) }} at {{ formatDateHour($dp) }}</p>
         <p class="flex flex-wrap mt-2">{!! replaceTemporary(limitWords($blog->body, 260, '...')) !!}</p>
